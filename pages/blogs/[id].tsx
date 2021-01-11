@@ -17,9 +17,9 @@ const BlogId = ({ blog }: Props) => {
     Prism.highlightAll()
   }, [])
   return (
-    <article className="sm:prose-sm md:prose w-full min-w-full article">
-      <div className="article__img">
-        <img src={blog.thumb[0].thumb.url} />
+    <article className="article sm:prose-sm md:prose pb-16 w-full min-w-full">
+      <div className="article__img relative h-0 overflow-hidden bg-gray-300 rounded-lg" style={{paddingTop:"52.5%"}}>
+        <img src={blog.thumb[0].thumb.url} className="absolute inset-0 z-10 w-full h-full m-auto block" />
       </div>
       <ul className="tag-list">
         {blog.tags.map((tag) => (
