@@ -5,10 +5,10 @@ import moment from "moment"
 
 const Thumb = ({blog}:{blog:Contents}) => {
   return (
-    <figure className="thumb-figure">
+    <figure className="thumb-figure h-full rounded-lg overflow-hidden shadow transition-shadow transition-transform md:hover:shadow-md md:hover:-translate-y-2">
       <Link href="/blogs/[id]" as={`/blogs/${blog.id}`}>
-        <a>
-          <div className="thumb-figure__head">
+        <a className="block">
+          <div className="thumb-figure__head bg-gray-300 relative overflow-hidden" style={{paddingTop: "62.5%",filter: "grayscale(1)"}}>
             <img src={blog.thumb[0].thumb.url} width="300" height="200" />
           </div>
           <div className="thumb-figure__body">
