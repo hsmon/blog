@@ -2,51 +2,107 @@
 @tailwind components;
 
 .header {
-  @apply pt-5 pb-4 mb-5 flex border-b;
+  @apply pt-5 pb-4 px-2 mb-5 flex border-b items-center;
 }
 .header__logo {
-  @apply text-2xl font-bold tracking-wide hover:text-blue-700;
+  @apply text-2xl font-bold tracking-wide md:hover:text-blue-700 transition-colors;
 }
-.header__logo:hover {
+.header__logo ~ * {
+  margin-left: auto;
 }
 
 .thumb-list {
   @apply grid grid-cols-2 gap-4 md:grid-cols-3;
 }
-.thumb-list__item {
-  
+.thumb-list .thumb-list__item {
+  @apply transition-all;
+}
+.thumb-list:hover .thumb-list__item:not(:hover) {
+  filter: blur(1.5px);
+}
+.thumb-list:hover .thumb-list__item:not(:hover) .thumb-figure {
+  @apply shadow-sm;
+}
+.thumb-list .thumb-list__item:hover {
+  filter: none;
+}
+.thumb-list .thumb-list__item:hover .thumb-figure__head {
+  filter: none;
 }
 .thumb-figure {
-  @apply h-full rounded-lg overflow-hidden shadow;
+  @apply h-full rounded-lg overflow-hidden shadow transition-shadow transition-transform md:hover:shadow-md md:hover:-translate-y-2;
 }
 .thumb-figure > a {
   @apply block h-full;
 }
 .thumb-figure__head {
-  @apply bg-gray-300 relative overflow-hidden;
+  @apply bg-gray-300 relative overflow-hidden transition-all;
   padding-top: 62.5%;
+  filter: grayscale(1);
 }
 .thumb-figure__head > div,
 .thumb-figure__head > img {
   @apply top-0 z-20;
-  position: absolute!important;
+  position: absolute !important;
 }
 .thumb-figure__head img {
   @apply object-cover w-full h-full;
 }
 .thumb-figure__body {
-  @apply p-3;
-  min-height: 120px;
+  @apply p-3 flex flex-col justify-between;
+  min-height: 80px;
+}
+@media (min-width: 768px) {
+  .thumb-figure__body {
+    min-height: 100px;
+  }
+}
+.thumb-figure__time {
+  @apply text-xs mb-1;
 }
 .thumb-figure__caption {
-  @apply overflow-hidden font-medium tracking-wide text-lg;
+  @apply overflow-hidden font-medium tracking-wide text-sm mb-1;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
 }
 
+.tag-list {
+  @apply flex flex-wrap;
+}
+.tag-list span {
+  @apply bg-blue-700 rounded-xl text-xs text-center py-1 px-2;
+  color: #fff;
+  min-width: 80px;
+}
+
+.icon--github {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 .title {
   @apply text-5xl text-center;
+}
+
+.article .tag-list li::before {
+  content: none;
+}
+.article .tag-list li {
+  padding-left: 0;
+  margin: 0;
+}
+
+.article .article__title {
+  @apply mt-2 mb-10 text-5xl ;
+}
+
+.article .article__img {
+  @apply bg-gray-300;
+}
+.article .article__img > img {
+  @apply block w-full m-auto;
 }
 
 @tailwind utilities;

@@ -5,7 +5,7 @@ import Thumb from "../components/Thumb"
 
 const Home = ({ blogs }: { blogs: Response["contents"] }) => {
   return (
-    <section>
+    <section className="px-2">
       <h2 className="font-semibold pb-4 text-l">最新の記事</h2>
       <ul className="thumb-list">
         {blogs.map((blog) => (

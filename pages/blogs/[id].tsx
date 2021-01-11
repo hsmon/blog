@@ -2,6 +2,10 @@ import React from "react"
 import { Contents, Key, Response } from "../../types/blog"
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next"
 import { ParsedUrlQuery } from "querystring"
+import Prism from 'prismjs'
+import Markdown from 'markdown-to-jsx'
+import moment from "moment"
+
 
 type Props = { blog: Contents }
 interface Context extends ParsedUrlQuery {
@@ -9,18 +13,27 @@ interface Context extends ParsedUrlQuery {
 }
 
 const BlogId = ({ blog }: Props) => {
+  React.useEffect(() => {
+    Prism.highlightAll()
+  }, [])
   return (
-    <div>
-      <h1>{blog.title}</h1>
-      <div>
-        {blog.tags.map((tag) => (
-          <React.Fragment key={tag.id}>
-            <span>{tag.name}</span>
-          </React.Fragment>
-        ))}
+    <article className="sm:prose-sm md:prose w-full min-w-full article">
+      <div className="article__img">
+        <img src={blog.thumb[0].thumb.url} />
       </div>
-      <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }}></div>
-    </div>
+      <ul className="tag-list">
+        {blog.tags.map((tag) => (
+          <li key={tag.id}>
+            <span>{tag.name}</span>
+          </li>
+        ))}
+      </ul>
+      <time className="thumb-article__time">{moment(blog.updatedAt).format("YYYY-MM-DD")}</time>
+      <h2 className="article__title">{blog.title}</h2>
+      <Markdown>
+        {blog.body}
+      </Markdown>
+    </article>
   )
 }
 
