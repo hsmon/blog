@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
     { headers: { 'X-API-KEY': process.env.API_KEY || '' } }
   )
   .then(res => res.json()).catch(error => null);
-
+  console.log(content)
   if (!content) {
     return res.status(401).json({ message: 'Invalid slug' });
   }
@@ -18,6 +18,6 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
     slug: content.id,
     draftKey: req.query.draftKey,
   });
-  res.writeHead(307, { Location: `/${content.id}` });
+  res.writeHead(307, { Location: `/draft/${content.id}` });
   res.end('Preview mode enabled');
 };

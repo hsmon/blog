@@ -1,19 +1,37 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
-import { Response, Key } from "../../types/blog"
+import {Contents, Response, Key } from "../../types/blog"
 import React from "react"
+import Prism from 'prismjs'
+import Markdown from 'markdown-to-jsx'
+import moment from "moment"
 
-const Page: any = ({ content } : {content: any}) => {
-  if (!content) {
-    return <p>error</p>
-  }
-  // 略
+type Props = { blog: Contents }
+
+const Page = ({ blog }: Props) => {
+  React.useEffect(() => {
+    Prism.highlightAll()
+  }, [])
   return (
-    <p>
-      <p>現在プレビュー中です</p>
-      {content}
-    </p>
+    <article className="sm:prose-sm md:prose w-full min-w-full article">
+      <p className="text-5xl">プレビュー中です！</p>
+      <div className="article__img">
+        <img src={blog.thumb[0].thumb.url} />
+      </div>
+      <ul className="tag-list">
+        {blog.tags.map((tag) => (
+          <li key={tag.id}>
+            <span>{tag.name}</span>
+          </li>
+        ))}
+      </ul>
+      <time className="thumb-article__time">{moment(blog.updatedAt).format("YYYY-MM-DD")}</time>
+      <h2 className="article__title">{blog.title}</h2>
+      <Markdown>
+        {blog.body}
+      </Markdown>
+    </article>
   )
-};
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const key: Key = {
@@ -30,15 +48,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug
   const draftKey = context.previewData?.draftKey
-  const content = await fetch(
+  const blog = await fetch(
     `https://hsmon.microcms.io/api/v1/blog/${slug}${
       draftKey !== undefined ? `?draftKey=${draftKey}` : ""
     }`,
-    { headers: { "X-API-KEY": process.env.apiKey || "" } }
+    { headers: { "X-API-KEY": process.env.API_KEY || "" } }
   ).then((res) => res.json())
   return {
     props: {
-      content,
+      blog,
     },
   }
 }
