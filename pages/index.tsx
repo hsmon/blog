@@ -2,19 +2,29 @@ import React from "react"
 import { Key, Response } from "../types/blog"
 import { GetStaticProps } from "next"
 import Thumb from "../components/Thumb"
+import { SEO } from "../components/SEO"
+import { getSiteMetaData } from "../functions/getSiteMetaData"
 
 const Home = ({ blogs }: { blogs: Response["contents"] }) => {
+  const { title, description } = getSiteMetaData()
   return (
-    <section className="px-2">
-      <h2 className="font-semibold pb-4 text-l">最新の記事</h2>
-      <ul className="thumb-list">
-        {blogs.map((blog) => (
-          <li key={blog.id} className="thumb-list__item">
-            <Thumb blog={blog}/>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <>
+      <SEO
+        title={"TOP"}
+        description={description}
+        type={"website"}
+      />
+      <section className="px-2">
+        <h2 className="font-semibold pb-4 text-l">最新の記事</h2>
+        <ul className="thumb-list">
+          {blogs.map((blog) => (
+            <li key={blog.id} className="thumb-list__item">
+              <Thumb blog={blog} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   )
 }
 
