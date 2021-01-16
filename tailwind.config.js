@@ -1,8 +1,9 @@
 const typography = require('@tailwindcss/typography')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: ["./components/**/*.tsx", "./pages/**/*.tsx"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class",
   important: true,
   theme: {
     screens: {
@@ -31,7 +32,35 @@ module.exports = {
         "sans-serif",
       ],
     },
-    extend: {},
+    fill: () => ({
+      'black': colors.gray[900],
+      'white': colors.gray[100],
+    }),
+    extend: {
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            a: {
+              color: colors.blue[700],
+              "&:hover": {
+                color: colors.blue[700],
+                textDecoration: "none",
+              },
+            },
+          },
+        },
+        dark: {
+          css: {
+            a: {
+              color: colors.red[400],
+              "&:hover": {
+                color: colors.red[400],
+              },
+            }
+          }
+        }
+      })
+    },
   },
   variants: {
     extend: {},
