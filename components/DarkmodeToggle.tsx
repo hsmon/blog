@@ -29,7 +29,7 @@ const DarkmodeToggle = () => {
 
   return (
     <button
-      className="w-6 h-6 rounded-full bg-gray-900 dark:bg-gray-100 toggle"
+      className="w-6 h-6 rounded-full toggle"
       onClick={toggleChange}
     >
       <span role="img" aria-label="電球" className="text-sm">
