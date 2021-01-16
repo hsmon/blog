@@ -14,6 +14,10 @@ li {
   @apply text-black dark:text-white;
 }
 
+.wrapper {
+  @apply bg-white transition-all duration-500 dark:bg-gray-800;
+}
+
 .header {
   @apply pt-5 pb-4 px-2 mb-5 flex border-b items-center;
 }
@@ -27,6 +31,9 @@ li {
   @apply ml-10;
 }
 
+.toggle {
+  @apply bg-gray-900 dark:bg-gray-100;
+}
 .toggle:focus:not(:focus-visible) {
   outline: none;
 }
@@ -83,6 +90,9 @@ li {
 }
 .thumb-figure__body h2.thumb-figure__caption {
   @apply text-black;
+}
+.thumb-article__time {
+  @apply dark:text-white;
 }
 
 .tag-list {
