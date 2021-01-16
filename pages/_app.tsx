@@ -1,12 +1,20 @@
+import React from "react"
 import { AppProps } from "next/app"
 import "../styles/styles.css"
 import Header from '../components/Header'
+import { changeDarkmodeTheme } from "../functions/changeDarkMode"
 
 function App({ Component, pageProps }: AppProps) {
+  // 初期化
+  changeDarkmodeTheme()
   return (
-    <div className="bg-white max-w-screen-lg mx-auto px-5">
-      <Header />
-      <Component {...pageProps} />
+    <div className="wrapper">
+      <div className="max-w-screen-lg mx-auto px-5 min-h-screen">
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </div>
     </div>
   )
 }

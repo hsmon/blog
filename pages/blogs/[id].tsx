@@ -28,7 +28,7 @@ const BlogId = ({ blog }: Props) => {
           </li>
         ))}
       </ul>
-      <time className="thumb-article__time">{moment(blog.updatedAt).format("YYYY-MM-DD")}</time>
+      <time className="thumb-article__time">🕘 : {moment(blog.updatedAt).format("YYYY-MM-DD")}</time>
       <h2 className="article__title">{blog.title}</h2>
       <Markdown>
         {blog.body}
