@@ -12,7 +12,7 @@ const Thumb = ({blog}:{blog:Contents}) => {
             <img src={blog.thumb[0].thumb.url} width="300" height="200" />
           </div>
           <div className="thumb-figure__body">
-            <time className="thumb-figure__time">{moment(blog.updatedAt).format("YYYY-MM-DD")}</time>
+            <time className="thumb-figure__time">{moment(blog.createdAt).format("YYYY-MM-DD")}</time>
             <h2 className="thumb-figure__caption">{blog.title}</h2>
             {
               !!blog.tags.length &&

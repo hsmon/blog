@@ -1,35 +1,56 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
-import {Contents, Response, Key } from "../../types/blog"
+import { Contents, Response, Key } from "../../types/blog"
 import React from "react"
-import Prism from 'prismjs'
-import Markdown from 'markdown-to-jsx'
+import Prism from "prismjs"
+import Markdown from "markdown-to-jsx"
 import moment from "moment"
+import { SEO } from "../../components/SEO"
+import { getSiteMetaData } from "../../functions/getSiteMetaData"
 
 type Props = { blog: Contents }
+
+const siteMetadata = getSiteMetaData()
 
 const Page = ({ blog }: Props) => {
   React.useEffect(() => {
     Prism.highlightAll()
   }, [])
   return (
-    <article className="sm:prose-sm md:prose w-full min-w-full article">
-      <p className="text-5xl">プレビュー中です！</p>
-      <div className="article__img">
-        <img src={blog.thumb[0].thumb.url} />
-      </div>
-      <ul className="tag-list">
-        {blog.tags.map((tag) => (
-          <li key={tag.id}>
-            <span>{tag.name}</span>
-          </li>
-        ))}
-      </ul>
-      <time className="thumb-article__time">{moment(blog.updatedAt).format("YYYY-MM-DD")}</time>
-      <h2 className="article__title">{blog.title}</h2>
-      <Markdown>
-        {blog.body}
-      </Markdown>
-    </article>
+    <>
+      <SEO
+        title={blog.title}
+        description={blog?.description ?? siteMetadata.description}
+        image={blog.thumb[0].thumb.url}
+        type={"article"}
+      />
+      <article className="sm:prose-sm md:prose w-full min-w-full article">
+        <p className="text-5xl">プレビュー中です！</p>
+        <div className="article__img">
+          <img src={blog.thumb[0].thumb.url} />
+        </div>
+        <ul className="tag-list">
+          {blog.tags.map((tag) => (
+            <li key={tag.id}>
+              <span>{tag.name}</span>
+            </li>
+          ))}
+        </ul>
+        <time className="thumb-article__time text-sm mb-4 block">
+          <span role="img" aria-label="投稿日時">
+            📮
+          </span>{" "}
+          : {moment(blog.createdAt).format("YYYY-MM-DD")}　
+          <span role="img" aria-label="更新日時">
+            🖌
+          </span>{" "}
+          :{" "}
+          {blog.createdAt !== blog.updatedAt &&
+            moment(blog.updatedAt).format("YYYY-MM-DD")}
+        </time>
+        <h2 className="article__title">{blog.title}</h2>
+        <Markdown>{blog.body}</Markdown>
+      </article>
+    </>
   )
 }
 

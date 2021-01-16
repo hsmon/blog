@@ -5,6 +5,7 @@ export interface Contents {
   publishedAt: string;
   revisedAt: string;
   title: string;
+  description: string;
   body: string;
   tags: Tags[];
   thumb: Thumb[]
