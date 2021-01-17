@@ -1,5 +1,5 @@
-const typography = require('@tailwindcss/typography')
-const colors = require('tailwindcss/colors')
+const typography = require("@tailwindcss/typography")
+const colors = require("tailwindcss/colors")
 
 module.exports = {
   purge: ["./components/**/*.tsx", "./pages/**/*.tsx"],
@@ -7,10 +7,10 @@ module.exports = {
   important: true,
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1120px',
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1120px",
     },
     fontFamily: {
       sans: [
@@ -33,8 +33,8 @@ module.exports = {
       ],
     },
     fill: () => ({
-      'black': colors.gray[900],
-      'white': colors.gray[100],
+      black: colors.gray[900],
+      white: colors.gray[100],
     }),
     extend: {
       typography: () => ({
@@ -56,16 +56,14 @@ module.exports = {
               "&:hover": {
                 color: colors.red[400],
               },
-            }
-          }
-        }
-      })
+            },
+          },
+        },
+      }),
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [
-    typography
-  ],
+  plugins: [typography],
 }

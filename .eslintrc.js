@@ -18,7 +18,13 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "prettier", "jsx-a11y"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "jsx-a11y",
+    "plugin:tailwind/recommended",
+  ],
   rules: {
     "prettier/prettier": "error",
     "jsx-a11y/alt-text": [
