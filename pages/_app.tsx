@@ -4,7 +4,7 @@ import "../styles/styles.css"
 import Header from "../components/Header"
 import { changeDarkmodeTheme } from "../functions/changeDarkMode"
 import { Router, useRouter } from "next/router"
-import * as ga from "../lib/ga"
+import * as ga from "../lib/gtag"
 
 const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   // 初期化
