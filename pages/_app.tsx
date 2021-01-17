@@ -6,7 +6,7 @@ import { changeDarkmodeTheme } from "../functions/changeDarkMode"
 import { Router, useRouter } from "next/router"
 import * as ga from "../lib/ga"
 
-function App({ Component, pageProps }: AppProps) {
+const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   // 初期化
   changeDarkmodeTheme()
   const router = useRouter()
