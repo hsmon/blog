@@ -1,5 +1,5 @@
 import Document, { Head, Main, NextScript, Html } from "next/document"
-import { existsGaId, GA_TRACKING_ID } from "../lib/ga"
+import { existsGaId, GA_TRACKING_ID } from "../lib/gtag"
 
 import { getSiteMetaData } from "../functions/getSiteMetaData"
 
