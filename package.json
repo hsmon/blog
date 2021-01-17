@@ -9,12 +9,12 @@
     "export": "yarn run build && next export",
     "pr:quick": "pretty-quick --staged",
     "lint": "eslint --ext .ts,.tsx",
-    "lint:fix": "yarn lint --fix",
-    "husky": {
-      "hooks": {
-        "pre-commit": "yarn pr:quick",
-        "pre-push": "yarn run lint"
-      }
+    "lint:fix": "yarn lint --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pr:quick",
+      "pre-push": "yarn run lint"
     }
   },
   "dependencies": {
