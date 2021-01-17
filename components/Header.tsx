@@ -14,7 +14,7 @@ const Header = () => {
       <div className="flex items-center header__body">
         <DarkmodeToggle />
         <Link href="https://github.com/hsmon/blog">
-          <a target="_blank" className="icon--github">
+          <a target="_blank" className="icon--github" aria-label="github">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

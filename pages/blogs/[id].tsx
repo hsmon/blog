@@ -1,6 +1,6 @@
 import React from "react"
 import { Contents, Key, Response } from "../../types/blog"
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next"
+import { GetStaticPaths, GetStaticProps } from "next"
 import { ParsedUrlQuery } from "querystring"
 import Prism from "prismjs"
 import Markdown from "markdown-to-jsx"
@@ -15,10 +15,11 @@ interface Context extends ParsedUrlQuery {
 
 const siteMetadata = getSiteMetaData()
 
-const BlogId = ({ blog }: Props) => {
+const BlogId: React.FC<Props> = ({ blog }: Props) => {
   React.useEffect(() => {
     Prism.highlightAll()
   }, [])
+  if (!blog) return <p>ページの読み込みに失敗しました。</p>
   return (
     <>
       <SEO
@@ -34,6 +35,8 @@ const BlogId = ({ blog }: Props) => {
         >
           <img
             src={blog.thumb[0].thumb.url}
+            role="presentation"
+            alt=""
             className="absolute inset-0 z-10 w-full h-full m-auto block"
           />
         </div>
@@ -48,7 +51,7 @@ const BlogId = ({ blog }: Props) => {
           <span role="img" aria-label="投稿日時">
             📮
           </span>{" "}
-          : {moment(blog.createdAt).format("YYYY-MM-DD")}　
+          : {moment(blog.createdAt).format("YYYY-MM-DD")}
           <span role="img" aria-label="更新日時">
             🖌
           </span>{" "}
@@ -65,7 +68,7 @@ const BlogId = ({ blog }: Props) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const key: Key = {
-    headers: { "X-API-KEY": process.env.API_KEY! },
+    headers: { "X-API-KEY": process.env.API_KEY || "" },
   }
 
   const res = await fetch("https://hsmon.microcms.io/api/v1/blog", key)
@@ -75,13 +78,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export const getStaticProps: GetStaticProps<Props, Context> = async (ctx) => {
-  const { id } = ctx.params!
-  const key = {
-    headers: { "X-API-KEY": process.env.API_KEY! },
+export const getStaticProps: GetStaticProps<Props, Context> = async ({
+  params,
+}) => {
+  let blog
+  if (params) {
+    const { id } = params
+    const key = {
+      headers: { "X-API-KEY": process.env.API_KEY || "" },
+    }
+    const res = await fetch(`https://hsmon.microcms.io/api/v1/blog/${id}`, key)
+    blog = await res.json()
   }
-  const res = await fetch(`https://hsmon.microcms.io/api/v1/blog/${id}`, key)
-  const blog = await res.json()
 
   return {
     props: {

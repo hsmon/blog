@@ -53,6 +53,9 @@ li {
 .thumb-list .thumb-list__item:hover {
   filter: none !important;
 }
+.thumb-list .thumb-list__item:hover .thumb-figure {
+  transform: translateY(-0.25rem);
+}
 .thumb-list .thumb-list__item:hover .thumb-figure__head {
   filter: none !important;
 }
