@@ -1,10 +1,10 @@
 import React from "react"
 import { AppProps } from "next/app"
 import "../styles/styles.css"
-import Header from '../components/Header'
+import Header from "../components/Header"
 import { changeDarkmodeTheme } from "../functions/changeDarkMode"
 
-function App({ Component, pageProps }: AppProps) {
+const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   // 初期化
   changeDarkmodeTheme()
   return (
