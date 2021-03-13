@@ -44,9 +44,7 @@ li {
 .thumb-list .thumb-list__item {
   @apply transition-all;
 }
-.thumb-list:hover .thumb-list__item:not(:hover) {
-  filter: blur(1.5px);
-}
+
 .thumb-list:hover .thumb-list__item:not(:hover) .thumb-figure {
   @apply shadow-sm;
 }

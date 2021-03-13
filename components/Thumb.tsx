@@ -12,7 +12,11 @@ const Thumb = ({ blog }: { blog: Contents }) => {
             className="thumb-figure__head bg-gray-300 relative overflow-hidden"
             style={{ paddingTop: "62.5%", filter: "grayscale(1)" }}
           >
-            <img src={blog.thumb[0].thumb.url} width="300" height="200" />
+            {blog.thumb ? (
+              <img src={blog.thumb[0].thumb.url} width="300" height="200" />
+            ) : (
+              <div className="bg-gray-300 w-full h-full"></div>
+            )}
           </div>
           <div className="thumb-figure__body">
             <time className="thumb-figure__time">
