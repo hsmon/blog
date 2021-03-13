@@ -44,7 +44,6 @@ li {
 .thumb-list .thumb-list__item {
   @apply transition-all;
 }
-
 .thumb-list:hover .thumb-list__item:not(:hover) .thumb-figure {
   @apply shadow-sm;
 }
@@ -133,6 +132,14 @@ li {
 
 .article .article__title {
   @apply mt-2 mb-10 text-4xl dark:text-white;
+}
+
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  @apply dark:text-white;
 }
 
 .article a {
