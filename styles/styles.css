@@ -71,7 +71,7 @@ li {
   @apply object-cover w-full h-full;
 }
 .thumb-figure__body {
-  @apply p-3 flex flex-col justify-between bg-white text-black;
+  @apply p-3 flex flex-col justify-start bg-white text-black h-full;
   min-height: 80px;
 }
 @media (min-width: 768px) {
@@ -97,6 +97,11 @@ li {
 
 .tag-list {
   @apply flex flex-wrap;
+  width: calc(100% + 5px + 5px);
+  margin-left: -5px;
+}
+.tag-list li {
+  margin: 0 5px 5px;
 }
 .tag-list span {
   @apply bg-blue-700 rounded-xl text-xs text-center py-1 px-2;
@@ -127,7 +132,6 @@ li {
 }
 .article .tag-list li {
   padding-left: 0;
-  margin: 0;
 }
 
 .article .article__title {
