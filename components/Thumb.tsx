@@ -7,7 +7,7 @@ const Thumb = ({ blog }: { blog: Contents }) => {
   return (
     <figure className="thumb-figure h-full rounded-lg overflow-hidden shadow transition-all duration-300 md:hover:shadow-md">
       <Link href="/blogs/[id]" as={`/blogs/${blog.id}`}>
-        <a className="block">
+        <a className="flex flex-col">
           <div
             className="thumb-figure__head bg-gray-300 relative overflow-hidden"
             style={{ paddingTop: "62.5%", filter: "grayscale(1)" }}
